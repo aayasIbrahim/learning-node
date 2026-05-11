@@ -1,46 +1,36 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-const productObJ = [
-  {
-    id: 1,
-    name: "Wireless Bluetooth Headphones",
-    description:
-      "High-quality wireless headphones with noise cancellation and long battery life.",
-  },
-  {
-    id: 2,
-    name: "Gaming Mechanical Keyboard",
-    description:
-      "RGB mechanical keyboard designed for gamers with fast response switches.",
-  },
-  {
-    id: 3,
-    name: "Smart Watch Series X",
-    description:
-      "Smartwatch with fitness tracking, heart rate monitor, and notifications.",
-  },
-  {
-    id: 4,
-    name: "Running Shoes",
-    description:
-      "Comfortable and lightweight running shoes for daily workouts.",
-  },
-  {
-    id: 5,
-    name: "Cotton Hoodie",
-    description: "Soft cotton hoodie with modern design and premium comfort.",
-  },
-];
-export const productController = (
-  req: IncomingMessage,
-  res: ServerResponse,
-) => {
-  res.writeHead(200, {
-    "content-type": "Application/json",
-  });
-  res.end(
-    JSON.stringify({
-      message: "Product retrived successfully",
-      data: productObJ,
-    }),
-  );
+import { getProduct } from "../service/products.service";
+import type { IProduct, Req, Res } from "../types/types";
+import { sendResponse } from "../utils/utities";
+
+export const productController = (req: Req, res: Res) => {
+  const url = req.url ?? "/products";
+  const method = req.method;
+  const urlParts = url.split("/");
+  const id =
+    urlParts && urlParts[1] === "products" ? Number(urlParts[2]) : null;
+
+  if (url === "/products" && method === "GET") {
+    const products = getProduct();
+    sendResponse(res, 200, {
+      success: true,
+      message: "Data fetched successfully",
+      data: products,
+    });
+  } else if (method === "GET" && id !== null) {
+    const products = getProduct();
+    const product = products.find((p: IProduct) => p.id == id);
+    if (!product) {
+      sendResponse(res, 404, {
+        success: false,
+        message: "Product not found",
+        data: null,
+      });
+    } else {
+      sendResponse(res, 200, {
+        success: true,
+        message: "Product  found",
+        data: product,
+      });
+    }
+  }
 };
