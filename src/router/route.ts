@@ -1,7 +1,7 @@
 import { productController } from "../controller/product.controller";
-import type { Req, Res } from "../types/types";
+import type { CustomReq, Req, Res } from "../types/types";
 
-export const routeHandler = (req: Req, res: Res) => {
+export const routeHandler = (req: CustomReq, res: Res) => {
   // console.log(req?.url);// "/","/user","/products",
   // console.log(req?.method)// "GET","POST","PATCH","DELETE"
   const url = req.url ?? "/";
