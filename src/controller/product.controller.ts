@@ -26,29 +26,45 @@ export const productController = async (req: Req, res: Res) => {
 
     //single product get
   } else if (method === "GET" && id !== null) {
-    const products = getProduct();
-    const product = products.find((p: IProduct) => p.id == id);
-    if (!product) {
-      sendResponse(res, 404, {
+    try {
+      const products = getProduct();
+      const product = products.find((p: IProduct) => p.id == id);
+      if (!product) {
+        sendResponse(res, 404, {
+          success: false,
+          message: "Product not found",
+          data: null,
+        });
+      } else {
+        sendResponse(res, 200, {
+          success: true,
+          message: "Product  reterived successfully",
+          data: product,
+        });
+      }
+    } catch (error) {
+      sendResponse(res, 500, {
         success: false,
-        message: "Product not found",
-        data: null,
-      });
-    } else {
-      sendResponse(res, 200, {
-        success: true,
-        message: "Product  reterived successfully",
-        data: product,
+        message: "Internal server Error",
       });
     }
+
+    // create products
   } else if (url === "/products" && method == "POST") {
     const products = getProduct();
+
     const body = await parseBody(req);
     const newProduct = {
       id: Date.now(),
       ...body,
     };
     products.push(newProduct);
+
     insertProduct(products);
+    sendResponse(res, 200, {
+      success: true,
+      message: "Product add to successfully",
+      data: newProduct,
+    });
   }
 };

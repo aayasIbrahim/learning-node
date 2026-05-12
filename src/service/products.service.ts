@@ -9,5 +9,5 @@ export const getProduct = () => {
   return JSON.parse(products);
 };
 export const insertProduct = (payload: any) => {
-  fs.writeFileSync(filePath, JSON.stringify(payload));
+  fs.writeFileSync(filePath, JSON.stringify(payload, null, 2));  //here 2 is indention which db.json look like clean
 };
