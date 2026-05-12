@@ -1,4 +1,3 @@
-
 import { getProduct, insertProduct } from "../service/products.service";
 import type { CustomReq, IProduct, Req, Res } from "../types/types";
 import { sendResponse } from "../utils/sendResponse";
@@ -117,16 +116,8 @@ export const productController = async (req: CustomReq, res: Res) => {
       message: "Product update to successfullsy",
       data: updateProduct,
     });
-  }
-  //DELETE Product
+  } //Delete product
   else if (method === "DELETE" && id !== null) {
-    const products = getProduct();
-    const indexProduct = products.findIndex((p: IProduct) => p.id == id);
-    const deleteProduct = products[indexProduct];
-    if (indexProduct == -1) {
-    //DELETE Product
-  } else if ( method === "DELETE" && id !== null) {
-    
     const products = getProduct();
     const indexProduct = products.findIndex((p: IProduct) => p.id == id);
     const deleteProduct = products[indexProduct];
@@ -144,4 +135,4 @@ export const productController = async (req: CustomReq, res: Res) => {
       data: deleteProduct,
     });
   }
-}}
+};
