@@ -1,3 +1,4 @@
+
 import { getProduct, insertProduct } from "../service/products.service";
 import type { CustomReq, IProduct, Req, Res } from "../types/types";
 import { sendResponse } from "../utils/sendResponse";
@@ -24,7 +25,7 @@ export const productController = async (req: CustomReq, res: Res) => {
       data: products.length == 0 ? [] : products,
     });
 
-    //single product get
+    //Single Product GET
   } else if (method === "GET" && id !== null) {
     try {
       const products = getProduct();
@@ -123,6 +124,13 @@ export const productController = async (req: CustomReq, res: Res) => {
     const indexProduct = products.findIndex((p: IProduct) => p.id == id);
     const deleteProduct = products[indexProduct];
     if (indexProduct == -1) {
+    //DELETE Product
+  } else if ( method === "DELETE" && id !== null) {
+    
+    const products = getProduct();
+    const indexProduct = products.findIndex((p: IProduct) => p.id == id);
+    const deleteProduct = products[indexProduct];
+    if (indexProduct === -1) {
       return sendResponse(res, 404, {
         success: false,
         message: "Product not found",
@@ -136,4 +144,4 @@ export const productController = async (req: CustomReq, res: Res) => {
       data: deleteProduct,
     });
   }
-};
+}}

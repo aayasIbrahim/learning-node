@@ -23,11 +23,20 @@
     "name": " Keyboard",
     "description": "RGB mechanical keyboard designed for gamers with fast response switches."
   },
+
   {
-    "id": 1778579403579,
-    "name": "AIts",
-    "description": "RGB ",
-    "price": 400,
-    "lowStack": 10
+    "id": 1778582418793,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
+  },
+  {
+    "id": 1778582462423,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
+  },
+  {
+    "id": 1778582504901,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
   }
 ]
