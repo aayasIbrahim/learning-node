@@ -1,10 +1,5 @@
 [
   {
-    "id": 1778576904053,
-    "name": "Gaming Mechanical Keyboard",
-    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
-  },
-  {
     "id": 1778578954398,
     "name": "Mechanical Keyboard",
     "description": "RGB mechanical keyboard designed for gamers with fast response switches."
@@ -21,6 +16,21 @@
   },
   {
     "id": 1778579403579,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
+  },
+  {
+    "id": 1778582418793,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
+  },
+  {
+    "id": 1778582462423,
+    "name": "AI",
+    "description": "RGB mechanical keyboard designed for gamers with fast response switches."
+  },
+  {
+    "id": 1778582504901,
     "name": "AI",
     "description": "RGB mechanical keyboard designed for gamers with fast response switches."
   }

@@ -1,4 +1,4 @@
-import { get, type IncomingMessage } from "node:http";
+
 import { getProduct, insertProduct } from "../service/products.service";
 import type { IProduct, Req, Res } from "../types/types";
 import { sendResponse } from "../utils/sendResponse";
@@ -24,7 +24,7 @@ export const productController = async (req: Req, res: Res) => {
       data: products.length == 0 ? [] : products,
     });
 
-    //single product get
+    //Single Product GET
   } else if (method === "GET" && id !== null) {
     try {
       const products = getProduct();
@@ -65,6 +65,25 @@ export const productController = async (req: Req, res: Res) => {
       success: true,
       message: "Product add to successfully",
       data: newProduct,
+    });
+    //DELETE Product
+  } else if ( method === "DELETE" && id !== null) {
+    
+    const products = getProduct();
+    const indexProduct = products.findIndex((p: IProduct) => p.id == id);
+    const deleteProduct = products[indexProduct];
+    if (indexProduct === -1) {
+      return sendResponse(res, 404, {
+        success: false,
+        message: "Product not found",
+      });
+    }
+    products.splice(deleteProduct, 1);
+    insertProduct(products);
+    sendResponse(res, 200, {
+      success: true,
+      message: "Product delete to successfully",
+      data: deleteProduct,
     });
   }
 };
