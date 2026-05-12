@@ -1,4 +1,3 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
 import { productController } from "../controller/product.controller";
 import type { Req, Res } from "../types/types";
 
@@ -12,7 +11,6 @@ export const routeHandler = (req: Req, res: Res) => {
     res.end(JSON.stringify({ message: "This is Hoome Route" }));
   } else if (url?.startsWith("/products")) {
     productController(req, res);
-
   } else {
     res.writeHead(404, {
       "content-type": "Application/json",
