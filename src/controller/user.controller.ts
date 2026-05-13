@@ -49,5 +49,15 @@ export const userController = async (req: CustomReq, res: Res) => {
       message: "successfulll deleted user",
       data: deletuser,
     });
+  } else if (method == 'PATCH' && id !== null) {
+    const users = getUsers();
+    const i = users.findIndex((u: IUser) => u.id.toString() == id);
+    const deletuser = users.splice(i, 1);
+    insertUser(users);
+    sendResponse(res, 200, {
+      success: true,
+      message: "successfulll deleted user",
+      data: deletuser,
+    });
   }
 };
