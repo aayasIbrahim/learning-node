@@ -1,4 +1,5 @@
 import { productController } from "../controller/product.controller";
+import { userController } from "../controller/user.controller";
 import type { CustomReq, Req, Res } from "../types/types";
 
 export const routeHandler = (req: CustomReq, res: Res) => {
@@ -11,6 +12,8 @@ export const routeHandler = (req: CustomReq, res: Res) => {
     res.end(JSON.stringify({ message: "This is Hoome Route" }));
   } else if (url?.startsWith("/products")) {
     productController(req, res);
+  } else if (url.startsWith("/users")) {
+    userController(req, res);
   } else {
     res.writeHead(404, {
       "content-type": "Application/json",

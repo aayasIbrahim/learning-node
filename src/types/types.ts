@@ -17,3 +17,9 @@ export interface IProduct {
   name: string;
   description: string;
 }
+export interface IUser {
+  id: Number
+  name: string;
+  email: string;
+  role: string;
+}
