@@ -1,3 +1,4 @@
+
 import { getProduct, insertProduct } from "../service/products.service";
 import type { CustomReq, IProduct, Req, Res } from "../types/types";
 import { sendResponse } from "../utils/sendResponse";
@@ -8,6 +9,8 @@ export const productController = async (req: CustomReq, res: Res) => {
   // const method = req.method;
   const { url, method } = req;
 
+  //const users=[{1},{2},{3}]  /products
+ //[{5}]=products/4
   const urlParts = url?.split("/");
   //       "/products/3" ==> ["",products,2]
   const id =
@@ -116,8 +119,10 @@ export const productController = async (req: CustomReq, res: Res) => {
       message: "Product update to successfullsy",
       data: updateProduct,
     });
+    
   } //Delete product
-  else if (method === "DELETE" && id !== null) {
+   else if ( method === "DELETE" && id !== null) {
+    
     const products = getProduct();
     const indexProduct = products.findIndex((p: IProduct) => p.id == id);
     const deleteProduct = products[indexProduct];
@@ -126,7 +131,8 @@ export const productController = async (req: CustomReq, res: Res) => {
         success: false,
         message: "Product not found",
       });
-    }
+    }  
+    
     products.splice(deleteProduct, 1);
     insertProduct(products);
     sendResponse(res, 200, {
@@ -135,4 +141,4 @@ export const productController = async (req: CustomReq, res: Res) => {
       data: deleteProduct,
     });
   }
-};
+}

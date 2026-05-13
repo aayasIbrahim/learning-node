@@ -3,6 +3,8 @@ import type { CustomReq, IUser, Res } from "../types/types";
 import { parseBody } from "../utils/parseBody";
 import { sendResponse } from "../utils/sendResponse";
 
+
+
 export const userController = async (req: CustomReq, res: Res) => {
   const { url, method } = req;
   const urlParts = url?.split("/");
@@ -17,6 +19,8 @@ export const userController = async (req: CustomReq, res: Res) => {
         users.lenght == 0 ? "users not found" : "users retrived successfully",
       data: users.lenght == 0 ? [] : users,
     });
+
+    
   } else if (method == "GET" && id !== null) {
     const users = getUsers();
     const user = users.find((u: IUser) => u.id.toString() == id);

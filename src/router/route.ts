@@ -10,7 +10,7 @@ export const routeHandler = (req: CustomReq, res: Res) => {
   if (url === "/" && method === "GET") {
     res.writeHead(200, { "content-type": "Application/json" });
     res.end(JSON.stringify({ message: "This is Hoome Route" }));
-  } else if (url?.startsWith("/products")) {
+  } else if (url.startsWith("/products")) {
     productController(req, res);
   } else if (url.startsWith("/users")) {
     userController(req, res);
